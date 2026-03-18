@@ -1,8 +1,8 @@
 package pl.Wlodarczyk.UCL_Stats.dto;
 
-public record GoalsRepository(
+public record GoalsResponse(
         String name,
-        Integer goal,
+        Integer goals,
         Integer insideArea,
         Integer outsideArea,
         Integer rightFood,
