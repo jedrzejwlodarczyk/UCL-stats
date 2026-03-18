@@ -1,5 +1,6 @@
 package pl.Wlodarczyk.UCL_Stats.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,13 @@ import java.util.List;
 public class PlayerService {
     private final PlayerRepository playerRepository;
     private final PlayerMapper playerMapper;
+
+    @Transactional(readOnly = true)
+    public PlayerResponse getById(Long playerId){
+        return playerRepository.findById(playerId)
+                .map(playerMapper::toResponse)
+                .orElseThrow(() -> new EntityNotFoundException("Player not found!"));
+    }
 
     @Transactional(readOnly = true)
     public List<PlayerResponse> getByTeam(Long teamId){
