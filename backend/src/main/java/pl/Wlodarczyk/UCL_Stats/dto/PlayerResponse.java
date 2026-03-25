@@ -6,6 +6,7 @@ import pl.Wlodarczyk.UCL_Stats.model.Team;
 import java.math.BigDecimal;
 
 public record PlayerResponse(
+        Long idPlayer,
         String playerName,
         String nationality,
         String fieldPosition,
