@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/players")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class PlayerController {
     private final PlayerService playerService;
 
@@ -19,8 +20,8 @@ public class PlayerController {
         return playerService.getById(playerId);
     }
 
-    @GetMapping("/team")
-    public List<PlayerResponse> getByTeam(@RequestParam Long team){
-        return playerService.getByTeam(team);
+    @GetMapping("/team/{teamId}")
+    public List<PlayerResponse> getByTeam(@PathVariable Long teamId){
+        return playerService.getByTeam(teamId);
     }
 }

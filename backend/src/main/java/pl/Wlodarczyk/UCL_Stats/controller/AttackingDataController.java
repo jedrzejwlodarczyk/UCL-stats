@@ -2,10 +2,7 @@ package pl.Wlodarczyk.UCL_Stats.controller;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.Wlodarczyk.UCL_Stats.dto.AttackingDataResponse;
 import pl.Wlodarczyk.UCL_Stats.service.AttackingDataService;
 
@@ -14,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/attacking-data")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class AttackingDataController {
     private final AttackingDataService attackingDataService;
 

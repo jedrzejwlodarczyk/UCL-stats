@@ -1,10 +1,7 @@
 package pl.Wlodarczyk.UCL_Stats.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.Wlodarczyk.UCL_Stats.dto.KeyStatsResponse;
 import pl.Wlodarczyk.UCL_Stats.service.KeyStatsService;
 
@@ -13,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/key-stats")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class KeyStatsController {
     private final KeyStatsService keyStatsService;
 

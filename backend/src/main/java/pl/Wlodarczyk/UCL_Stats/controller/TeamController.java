@@ -7,9 +7,11 @@ import pl.Wlodarczyk.UCL_Stats.service.TeamService;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/api/v1/teams")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class TeamController {
     private final TeamService teamService;
 
