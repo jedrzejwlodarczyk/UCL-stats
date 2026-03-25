@@ -4,6 +4,9 @@ package pl.Wlodarczyk.UCL_Stats.service;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.action.internal.EntityActionVetoException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.Wlodarczyk.UCL_Stats.mapper.TeamMapper;
@@ -21,7 +24,11 @@ public class TeamService {
 
     @Transactional(readOnly = true)
     public List<TeamResponse> getAll(){
-        return teamRepository.findAll().stream()
+        Sort sort = Sort.by(
+                Sort.Order.asc("team")
+        );
+
+        return teamRepository.findAll(sort).stream()
                 .map(teamMapper::toResponse)
                 .toList();
     }
