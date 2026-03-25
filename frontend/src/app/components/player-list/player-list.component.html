@@ -1,0 +1,42 @@
+<div class="squad-container">
+    <h2>Goalkeepers:</h2>
+    <div class="squad-grid">
+        @for (player of getPlayersByPosition('Goalkeeper'); track $index){
+            <div class="player-card" (click)="onPlayerClick(player)" style="cursor: pointer;">
+                <img [src]="player.playerImage" alt="playerImage" width="50">
+                <strong>{{ player.playerName }}</strong>
+            </div>
+        }
+    </div>
+    
+    <h2>Defenders:</h2>
+    <div class="squad-grid">
+        @for (player of getPlayersByPosition('Defender'); track $index){
+            <div class="player-card" (click)="onPlayerClick(player)" style="cursor: pointer;">
+                <img [src]="player.playerImage" alt="playerImage" width="50">
+                <strong>{{ player.playerName }}</strong>
+            </div>
+        }
+    </div>
+
+    <h2>Midfielders:</h2>
+    <div class="squad-grid">
+        @for (player of getPlayersByPosition('Midfielder'); track $index){
+            <div class="player-card" (click)="onPlayerClick(player)" style="cursor: pointer;">
+                <img [src]="player.playerImage" alt="playerImage" width="50">
+                <strong>{{ player.playerName }}</strong>
+            </div>
+        }
+    </div>
+
+    <h2>Forwards:</h2>
+    <div class="squad-grid">
+        @for (player of getPlayersByPosition('Forward'); track $index){
+            <div class="player-card" (click)="onPlayerClick(player)" style="cursor: pointer;">
+                <img [src]="player.playerImage" alt="playerImage" width="50">
+                <strong>{{ player.playerName }}</strong>
+            </div>
+        }
+    </div>
+    
+</div>

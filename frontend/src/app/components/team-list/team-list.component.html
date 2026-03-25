@@ -1,0 +1,12 @@
+<div class="teams-container">
+    <h2>TEAMS</h2>
+    <div class="team-grid">
+        @for (team of teams; track team.teamId) { 
+            <div class="team-card" (click)="onTeamClick(team.teamId)" style="cursor: pointer;">
+                <img [src]="team.logo" alt="Logo" width="50">
+                <h3>{{ team.team }}</h3>
+                <p>{{ team.country }}</p>
+            </div>
+        }
+    </div>
+</div>

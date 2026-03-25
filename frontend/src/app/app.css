@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #001233 0%, #000000 100%);
+  color: white;
+  padding-top: 20px;
+  text-align: center;
+}
+
+h1{
+    padding-bottom: 50px;
+}

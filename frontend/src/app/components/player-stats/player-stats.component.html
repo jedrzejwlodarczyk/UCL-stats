@@ -1,0 +1,167 @@
+@if (stats) {
+    <div class="stats-container">
+        <div class="profile-header">
+            <div class="player-data">
+                <img [src] = "playerData.playerImage" alt="playerImage" width="100">
+                <h1>{{ stats.attack.name || stats.playerName }}</h1>
+            </div>
+            
+            <div class="info-table">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Nationality</td>
+                            <td>{{ playerData.nationality }}</td>
+                        </tr>
+                        <tr>
+                            <td>Age</td>
+                            <td>{{ playerData.age }}</td>
+                        </tr>
+                        <tr>
+                            <td>Position</td>
+                            <td>{{ playerData.fieldPosition }}</td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td>{{ playerData.height ?? 'UNKNOWN' }}</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>{{ playerData.weight ?? 'UNKNOWN' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
+        @if (playerData.fieldPosition != 'Goalkeeper') {
+            <div class="tabs-menu">
+                <button [class.active]="activeTab === 'main'" (click)="activeTab = 'main'">MAIN</button>
+                <button [class.active]="activeTab === 'goals'" (click)="activeTab = 'goals'">GOALS</button>
+                <button [class.active]="activeTab === 'attacking'" (click)="activeTab = 'attacking'">ATTACKING</button>
+                <button [class.active]="activeTab === 'attempts'" (click)="activeTab = 'attempts'">ATTEMPTS</button>
+                <button [class.active]="activeTab === 'defense'" (click)="activeTab = 'defense'">DEFENDING</button>
+                <button [class.active]="activeTab === 'distribution'" (click)="activeTab = 'distribution'">DISTRIBUTION</button>
+                <button [class.active]="activeTab === 'disciplinary'" (click)="activeTab = 'disciplinary'">DISCIPLINARY</button>
+            </div>
+
+            @if (activeTab === 'main'){
+                <div class="data-table">
+                    <thead>
+                        <tr><th colspan="2">Main data</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Goals</td><td>{{ stats.goals.goals ?? 0}}</td></tr>
+                        <tr><td>Assists</td><td>{{ stats.attack.assists ?? 0}}</td></tr>
+                        <tr><td>Apperance</td><td>{{ stats.key.matchesAppareance ?? 0}}</td></tr>
+                        <tr><td>Minutes played</td><td>{{ stats.key.minutesPlayed ?? 0}}</td></tr>
+                        <tr><td>Distance covered</td><td>{{ stats.key.distanceCovered ?? 0}} km</td></tr>
+                        <tr><td>Top speed</td><td>{{ stats.key.topSpeed ?? 0}} km/h</td></tr>
+                    </tbody>
+                </div>
+            }
+            @if (activeTab === 'goals'){
+                <div class="data-table">
+                    <thead>
+                        <tr><th colspan="2">Goals data</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Goals</td><td>{{ stats.goals.goals ?? 0}}</td></tr>
+                        <tr><td>Inside area</td><td>{{ stats.goals.insideArea ?? 0}}</td></tr>
+                        <tr><td>Outside area</td><td>{{ stats.goals.outsideArea ?? 0}}</td></tr>
+                        <tr><td>Right foot</td><td>{{ stats.goals.rightFoot ?? 0}}</td></tr>
+                        <tr><td>Left foot</td><td>{{ stats.goals.leftFoot ?? 0}}</td></tr>
+                        <tr><td>Head</td><td>{{ stats.goals.head ?? 0}}</td></tr>
+                        <tr><td>Penalties scored</td><td>{{ stats.goals.penaltiesScored ?? 0}}</td></tr>
+                        <tr><td>Other</td><td>{{ stats.goals.other ?? 0}}</td></tr>
+                    </tbody>
+                </div>
+            }
+
+            @if (activeTab === 'attacking'){
+                <div class="data-table">
+                    <thead>
+                        <tr><th colspan="2">Attacking data</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Dribbles</td><td>{{ stats.attack.dribbles ?? 0}}</td></tr>
+                        <tr><td>Corners taken</td><td>{{ stats.attack.cornersTaken ?? 0}}</td></tr>
+                        <tr><td>Offsides</td><td>{{ stats.attack.offsides ?? 0}}</td></tr>
+                    </tbody>
+                </div>
+            }
+            @if (activeTab === 'attempts'){
+                <div class="data-table">
+                    <thead>
+                        <tr><th colspan="2">Attempts data</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Total attempts</td><td>{{ stats.attempts.totalAttempts ?? 0}}</td></tr>
+                        <tr><td>Attempts on target</td><td>{{ stats.attempts.attemptsOnTarget ?? 0}}</td></tr>
+                        <tr><td>Attempts off target</td><td>{{ stats.attempts.attemptsOffTarget ?? 0}}</td></tr>
+                        <tr><td>Blocked</td><td>{{ stats.attempts.blocked ?? 0}}</td></tr>
+                    </tbody>
+                </div>
+            }
+            @if (activeTab === 'defense'){
+                <div class="data-table">
+                    <thead>
+                        <tr><th colspan="2">Defending data</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Balls recovered</td><td>{{ stats.defense.ballsRecovered ?? 0}}</td></tr>
+                        <tr><td>Tackles</td><td>{{ stats.defense.tackles ?? 0}}</td></tr>
+                        <tr><td>Tackles won</td><td>{{ stats.defense.tacklesWon ?? 0}}</td></tr>
+                        <tr><td>Tackles lost</td><td>{{ stats.defense.tacklesLost ?? 0}}</td></tr>
+                        <tr><td>Clearance attempted</td><td>{{ stats.defense.clearanceAttempted ?? 0}}</td></tr>
+                    </tbody>
+                </div>
+            }
+            @if (activeTab === 'distribution'){
+                <div class="data-table">
+                    <thead>
+                        <tr><th colspan="2">Distribution data</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Passing accuracy</td><td>{{ stats.distribution.passingAccuracy ?? 0}}%</td></tr>
+                        <tr><td>Passes attempted</td><td>{{ stats.distribution.passesAttempted ?? 0}}</td></tr>
+                        <tr><td>Passes completed</td><td>{{ stats.distribution.passesCompleted ?? 0}}</td></tr>
+                        <tr><td>Crossing accuracy</td><td>{{ stats.distribution.crossingAccuracy ?? 0}}%</td></tr>
+                        <tr><td>Crosses attempted</td><td>{{ stats.distribution.crossesAttempted ?? 0}}</td></tr>
+                        <tr><td>Crosses completed</td><td>{{ stats.distribution.crossesCompleted ?? 0}}</td></tr>
+                        <tr><td>Freekick taken</td><td>{{ stats.distribution.freeKickTaken ?? 0}}</td></tr>
+                    </tbody>
+                </div>
+            }
+            @if (activeTab === 'disciplinary'){
+                <div class="data-table">
+                    <thead>
+                        <tr><th colspan="2">Disciplinary data</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Fouls commited</td><td>{{ stats.disciplinary.foulsCommitted ?? 0}}</td></tr>
+                        <tr><td>Fouls suffered</td><td>{{ stats.disciplinary.foulsSuffered ?? 0}}</td></tr>
+                        <tr><td>Yellow cards</td><td>{{ stats.disciplinary.yellowCards ?? 0}}</td></tr>
+                        <tr><td>Red cards</td><td>{{ stats.disciplinary.redCards ?? 0}}</td></tr>
+                    </tbody>
+                </div>
+            }       
+        }@else{
+            <div class="data-table">
+                <thead>
+                    <tr><th colspan="2">Goalkeeping data</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Apperance</td><td>{{ stats.key.matchesAppareance ?? 0}}</td></tr>
+                    <tr><td>Minutes played</td><td>{{ stats.key.minutesPlayed ?? 0}}</td></tr>
+                    <tr><td>Saves</td><td>{{ stats.goalkeeping.saves ?? 0}}</td></tr>
+                    <tr><td>Goals conceded</td><td>{{ stats.goalkeeping.goalsConceded ?? 0}}</td></tr>
+                    <tr><td>Saves on penalty</td><td>{{ stats.goalkeeping.savesOnPenalty ?? 0}}</td></tr>
+                    <tr><td>Clean sheets</td><td>{{ stats.goalkeeping.cleanSheets ?? 0}}</td></tr>
+                    <tr><td>Punches made</td><td>{{ stats.goalkeeping.punchesMade ?? 0}}</td></tr>
+                </tbody>
+            </div>
+        }
+    </div>
+}
