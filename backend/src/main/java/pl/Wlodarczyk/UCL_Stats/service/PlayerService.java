@@ -2,6 +2,7 @@ package pl.Wlodarczyk.UCL_Stats.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.Wlodarczyk.UCL_Stats.dto.PlayerResponse;
@@ -25,7 +26,11 @@ public class PlayerService {
 
     @Transactional(readOnly = true)
     public List<PlayerResponse> getByTeam(Long teamId){
-        return playerRepository.findByTeamTeamId(teamId).stream()
+        Sort sort = Sort.by(
+                Sort.Order.asc("playerName")
+        );
+
+        return playerRepository.findByTeamTeamId(teamId, sort).stream()
                 .map(playerMapper::toResponse)
                 .toList();
     }
